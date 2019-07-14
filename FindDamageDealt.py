@@ -19,5 +19,6 @@ soup = BeautifulSoup(urlopen(request), 'html.parser')
 #bool return either true or false. True if Damage Dealt is found, false if otherwise. The soup is the webpage, which is converted into string. Converting it to a string allows regex to read it.
 result = bool(re.search('Damage Dealt', str(soup)))
 
-#Display the result to the user.
-print(result)
+#If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user.
+if result:
+    print(soup.title.string)
