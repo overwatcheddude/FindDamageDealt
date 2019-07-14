@@ -16,8 +16,8 @@ request = Request(URL, data=None, headers={'User-Agent': HEADER})
 #BeautifulSoup object is intilized and the webpage is accessed here.
 soup = BeautifulSoup(urlopen(request), 'html.parser')
 
-#Look for text that matches the string below EXACTLY.
-result = soup.findAll("span", string='Strange Part: Damage Dealt')
+#bool return either true or false. True if Damage Dealt is found, false if otherwise. The soup is the webpage, which is converted into string. Converting it to a string allows regex to read it.
+result = bool(re.search('Damage Dealt', str(soup)))
 
-print(soup)
+#Display the result to the user.
 print(result)
