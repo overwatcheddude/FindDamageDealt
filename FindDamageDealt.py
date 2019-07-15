@@ -6,10 +6,14 @@ import re #re stands for Regular Expression
 #Some websites do not allow crawlers or web scrapping. This header is a workaround and it prevents the 403 HTTP forbidden issue.
 HEADER = 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46'
 
+txtFile = open("StrangeItemsLinks.txt", "r")
+
+StrangeItemsLinks = txtFile.readlines()
+
 #This loop allows the user to input URLs repeatedly.
-while True:
-    #Takes the user input.
-    URL = input("Enter URL:")
+for link in StrangeItemsLinks:
+    #Read the link
+    URL = link
 
     #A Request object is initialized using the URL and the header.
     request = Request(URL, data=None, headers={'User-Agent': HEADER})
