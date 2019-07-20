@@ -15,6 +15,12 @@ StrangeItemsLinks = txtFile.readlines()
 #Take user input.
 strangePart = input("What would you like to search for?")
 
+#This counter will help the user keep track of how many weapons have been searched so far. It is used in the for loop below.
+counter = 0
+
+#The {} are formatted in the for loop below.
+progressBar = "{} items have been searched out of {}"
+
 #This loop allows the user to input URLs repeatedly.
 for link in StrangeItemsLinks:
     #Read the link
@@ -28,6 +34,12 @@ for link in StrangeItemsLinks:
 
     #bool return either true or false. True if strange part is found, false if otherwise. The soup is the webpage, which is converted into string. Converting it to a string allows regex to read it.
     result = bool(re.search(strangePart, str(soup)))
+
+    #Increases the counter by one.
+    counter += 1
+    
+    #Display to the user how many items have been searched so far.
+    print(progressBar.format(counter, len(StrangeItemsLinks)))
 
     #If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user.
     if result:
