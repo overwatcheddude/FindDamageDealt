@@ -37,10 +37,10 @@ for link in StrangeItemsLinks:
 
     #Increases the counter by one.
     counter += 1
-    
-    #Display to the user how many items have been searched so far.
-    print(progressBar.format(counter, len(StrangeItemsLinks)))
 
     #If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user.
     if result:
         print(soup.title.string + ": " + link)
+
+    #Display to the user how many items have been searched so far.    
+    print(progressBar.format(counter, len(StrangeItemsLinks)), end="\r")
