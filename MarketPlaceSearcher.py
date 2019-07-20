@@ -14,15 +14,19 @@ StrangeItemsLinks = txtFile.readlines()
 
 #Take user input.
 strangePart = input("What would you like to search for?")
+txtStartNumber = input("At what item number would you like to start at?")
+
+#Converts user input into a number
+startNumber = int(txtStartNumber)
 
 #This counter will help the user keep track of how many weapons have been searched so far. It is used in the for loop below.
-counter = 0
+counter = startNumber
 
 #The {} are formatted in the for loop below.
 progressBar = "{} items have been searched out of {}"
 
-#This loop allows the user to input URLs repeatedly.
-for link in StrangeItemsLinks:
+#This loop will go through every link in the text file. It start with a number assigned by the user.
+for link in StrangeItemsLinks[startNumber:]:
     #Read the link
     URL = link
 
