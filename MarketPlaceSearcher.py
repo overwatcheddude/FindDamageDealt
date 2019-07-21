@@ -25,26 +25,29 @@ counter = startNumber
 #The {} are formatted in the for loop below.
 progressBar = "{} items have been searched out of {}"
 
-#This loop will go through every link in the text file. It start with a number assigned by the user.
-for link in StrangeItemsLinks[startNumber:]:
-    #Read the link
-    URL = link
+try:
+    #This loop will go through every link in the text file. It start with a number assigned by the user.
+    for link in StrangeItemsLinks[startNumber:]:
+        #Read the link
+        URL = link
 
-    #A Request object is initialized using the URL and the header.
-    request = Request(URL, data=None, headers={'User-Agent': HEADER})
+        #A Request object is initialized using the URL and the header.
+        request = Request(URL, data=None, headers={'User-Agent': HEADER})
 
-    #BeautifulSoup object is intilized and the webpage is accessed here.
-    soup = BeautifulSoup(urlopen(request), 'html.parser')
+        #BeautifulSoup object is intilized and the webpage is accessed here.
+        soup = BeautifulSoup(urlopen(request), 'html.parser')
 
-    #bool return either true or false. True if strange part is found, false if otherwise. The soup is the webpage, which is converted into string. Converting it to a string allows regex to read it.
-    result = bool(re.search(strangePart, str(soup)))
+        #bool return either true or false. True if strange part is found, false if otherwise. The soup is the webpage, which is converted into string. Converting it to a string allows regex to read it.
+        result = bool(re.search(strangePart, str(soup)))
 
-    #Increases the counter by one.
-    counter += 1
+        #Increases the counter by one.
+        counter += 1
 
-    #If the result is true, then the title of the webpage that contains text that matches the user input would be displayed, along with its link. end='' removes the newlines.
-    if result:
-        print(soup.title.string + ": " + link, end='')
+        #If the result is true, then the title of the webpage that contains text that matches the user input would be displayed, along with its link. end='' removes the newlines.
+        if result:
+            print(soup.title.string + ": " + link, end='')
 
-    #Display to the user how many items have been searched so far. end="\r" will print on the same line.
-    print(progressBar.format(counter, len(StrangeItemsLinks)), end="\r")
+        #Display to the user how many items have been searched so far. end="\r" will print on the same line.
+        print(progressBar.format(counter, len(StrangeItemsLinks)), end="\r")
+except:
+    print("The program broke at item number: " + str(counter))
