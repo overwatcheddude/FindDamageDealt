@@ -6,7 +6,7 @@ import re #re stands for Regular Expression
 #Some websites do not allow crawlers or web scrapping. This header is a workaround and it prevents the 403 HTTP forbidden issue.
 HEADER = 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46'
 
-#Open the text file that contain links to strange weapons.
+#Open the text file that contain links to strange items including strange cosmetics and weapons.
 txtFile = open("StrangeItemsLinks.txt", "r")
 
 #Read all the links in the text file.
@@ -42,7 +42,7 @@ for link in StrangeItemsLinks[startNumber:]:
     #Increases the counter by one.
     counter += 1
 
-    #If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user. end='' removes the extra newline.
+    #If the result is true, then the title of the webpage that contains text that matches the user input would be displayed, along with its link. end='' removes the newlines.
     if result:
         print(soup.title.string + ": " + link, end='')
 
