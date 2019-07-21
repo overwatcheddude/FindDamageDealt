@@ -42,9 +42,9 @@ for link in StrangeItemsLinks[startNumber:]:
     #Increases the counter by one.
     counter += 1
 
-    #If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user.
+    #If the result is true, then the title of the webpage that contains Damage Dealt strange part would be displayed. Else, nothing will be displayed to the user. end='' removes the extra newline.
     if result:
-        print(soup.title.string + ": " + link)
+        print(soup.title.string + ": " + link, end='')
 
-    #Display to the user how many items have been searched so far.    
+    #Display to the user how many items have been searched so far. end="\r" will print on the same line.
     print(progressBar.format(counter, len(StrangeItemsLinks)), end="\r")
